@@ -20,6 +20,7 @@ class Styles {
   static Color optionalColor = Color(0xffA7A7A7);
   static Color errorColor = Color(0xffea6060);
 
+
   static final BoxDecoration formContainerDecoration = BoxDecoration(
     color: Colors.white,
     boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
@@ -29,11 +30,12 @@ class Styles {
     ),
   );
 
+
   static final BoxDecoration checkBoxDecoration = BoxDecoration(
     color: Colors.white,
     boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
     border: Border.all(color: Color(0xffd4d4d4)),
-    borderRadius: BorderRadius.all(Radius.circular(3),
+    borderRadius: BorderRadius.all(Radius.circular(3), 
     ),
   );
 

@@ -23,11 +23,6 @@ class FormPage extends StatelessWidget {
     @required this.children,
   }) : super(key: key);
 
-  // Size screenSize;
-  // double bottomPosition;
-  // double startPosition;
-  // double topListPadding = 0;
-
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -85,7 +80,6 @@ class FormPage extends StatelessWidget {
   }
 
   _handleTap(BuildContext context) {
-    //To improve user experience, we'll unfocus any textfields when the users taps oon the background of the form
     if (MediaQuery.of(context).viewInsets.bottom > 0) SystemChannels.textInput.invokeMethod('TextInput.hide');
     WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
   }

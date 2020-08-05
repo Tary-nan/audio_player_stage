@@ -1,4 +1,5 @@
 mixin FormMixin {
+  
   Map<String, bool> validInputsMap = {};
   double formCompletion = 0;
   bool isFormErrorVisible = false;

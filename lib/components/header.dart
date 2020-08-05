@@ -13,15 +13,6 @@ class Header extends StatelessWidget {
           height: screenSize.height * .25,
           width: screenSize.width,
           decoration: BoxDecoration(
-            // gradient: LinearGradient(
-            //   colors: [
-            //     Styles.baseColor,
-            //     Colors.teal
-            //   ],
-            //   begin: Alignment.topLeft,
-            //   end: Alignment.bottomRight
-
-            // )
               image: DecorationImage(
                   image: AssetImage('assets/images/cho.png'),
                   // image: AssetImage('assets/ecole.jpg'),

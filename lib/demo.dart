@@ -28,10 +28,9 @@ class _PlantFormsDemoState extends State<PlantFormsDemo> {
         Header(),
         Provider<SharedFormState>(
           create: (_) => SharedFormState(),
-          //Use WillPopScope to intercept hardware back taps, and instead pop the nested navigator
+          //Use WillPopScope intercep les retour
           child: WillPopScope(
             onWillPop: _handleBackPop,
-            //Use a nested navigator to group the 3 form views under 1 parent view
             child: Navigator(
               key: navKey,
               onGenerateRoute: (route) {

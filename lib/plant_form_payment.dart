@@ -1,20 +1,13 @@
 import 'dart:io';
-
-import 'package:audio_player_stage/demo.dart';
+import 'package:audio_player_stage/components/button_upload_diplome.dart';
+import 'package:audio_player_stage/components/button_upload_photo.dart';
+import 'package:audio_player_stage/components/section_separator.dart';
+import 'package:audio_player_stage/components/section_title.dart';
+import 'package:audio_player_stage/form_inputs/text_input.dart';
 import 'package:flutter/material.dart';
-
-import 'package:provider/provider.dart';
-
-import 'demo_data.dart';
-import 'form_inputs/checkbox_input.dart';
-import 'form_inputs/credit_card_input.dart';
-import 'form_mixin.dart';
 import 'form_page.dart';
-import 'components/section_separator.dart';
-import 'components/section_title.dart';
 import 'styles.dart';
 import 'components/submit_button.dart';
-import 'form_inputs/text_input.dart';
 
 class PlantFormPayment extends StatefulWidget {
   final double pageSize;
@@ -26,10 +19,6 @@ class PlantFormPayment extends StatefulWidget {
 
 class _PlantFormPaymentState extends State<PlantFormPayment> /*with FormMixin*/ {
   final _formKey = GlobalKey<FormState>();
-  // CreditCardNetwork _cardNetwork;
-
-  // SharedFormState sharedState;
-  // Map<String, String> get values => sharedState.valuesByName;
 
   @override
   void initState() {
@@ -65,219 +54,7 @@ class _PlantFormPaymentState extends State<PlantFormPayment> /*with FormMixin*/ 
       title: 'Soumettre',
       children: [
 
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
 
-            Column(
-          children: <Widget>[
-            SizedBox(
-              height: 40,
-            ),
-            /*Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: FAProgressBar(
-                              progressColor: accanceColor,
-                              currentValue: 100,
-                              displayText: '%',
-                              animatedDuration: Duration(seconds: 1),
-                              maxValue: 100,
-                            ),
-                          ),*/
-            /*Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: new LinearPercentIndicator(
-                              width: MediaQuery.of(context).size.width/1.1,
-                              animation: true,
-                              lineHeight: 20.0,
-                              animationDuration: 2000,
-                              percent: 1.0,
-                              center: Text("100.0%", style: TextStyle(
-                                color: Colors.white
-                              ),),
-                              linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: accanceColor,
-                            ),
-                          ),*/
-
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Felicitations votre annonce est complète !!!",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 25,
-                    fontFamily: 'BAARS',
-                    fontWeight: FontWeight.w700),
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Container(
-                padding: EdgeInsets.all(12),
-                child: Text(
-                  "Dernière petite chose : enrichissez la avec des recommandations d'amis, de collègues ou d'anciens élèves..."
-                  "Plus vous en avez, plus elle sera appreciée et mieux elle sera positionnée .",
-                  style: TextStyle(color: Colors.black54, fontSize: 18),
-                )),
-            SizedBox(
-              height: 16,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height / 1,
-              width: MediaQuery.of(context).size.width / 1.1,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                      color: Colors.grey.withOpacity(0.2), width: 1)),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 150,
-                    width: 150,
-                    decoration: BoxDecoration(
-                        color: Styles.accanceColor,
-                        shape: BoxShape.circle,)
-                        // image: DecorationImage(
-                        //     image: AssetImage('assets/images/books.jpg'),
-                        //     fit: BoxFit.cover)),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'DAGOUAGA',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height / 18,
-                    width: MediaQuery.of(context).size.width / 4,
-                    decoration: BoxDecoration(
-                        color: Styles.accanceColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                        child: Text(
-                      '100frs/h',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
-                    )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Center(
-                        child: Text(
-                      'Simplissime, demandez des recommandations à vos amis via :',
-                      style: TextStyle(
-                          fontFamily: 'BAARS',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.black54),
-                    )),
-                  ),
-                  // SocialBtn("SMS", Icons.message, Colors.green),
-                  // SocialBtn("Mail", Icons.mail, Colors.pink),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      margin: EdgeInsets.only(top: 10),
-                      padding: EdgeInsets.only(left: 10),
-                      height: 50,
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(59, 89, 152, 1),
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'f',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text(
-                            'Facebook',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontFamily: 'BAARS',
-                                fontWeight: FontWeight.w700),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  // SocialBtn("Messenger", Icons.message,
-                  //     Color.fromRGBO(93, 153, 251, 1)),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      margin: EdgeInsets.only(top: 10),
-                      padding: EdgeInsets.only(left: 10),
-                      height: 50,
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      decoration: BoxDecoration(
-                          color: Styles.accanceColor,
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            height: 18,
-                            width: 18,
-                            color: Colors.white,
-                            child: Center(
-                                child: Text(
-                              'in',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Styles.accanceColor,
-                                  fontSize: 15),
-                            )),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Linkedin',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontFamily: 'BAARS',
-                                fontWeight: FontWeight.w700),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              height: 30,
-            ),
-          ],
-        ),
-            
-             ],
-        ),
      
         // TextInput(
         //     key: ValueKey(FormKeys.ccName), label: 'Card Name', helper: 'Cardholder Name', onValidate: onItemValidate, onChange: (String key, String value){
@@ -286,8 +63,70 @@ class _PlantFormPaymentState extends State<PlantFormPayment> /*with FormMixin*/ 
 
 
         //     },),
-      
+        _builProfil(),
+         Separator(),
+         Container(
+           alignment: Alignment.topLeft,
+           child: FormSectionTitle('Liens chaine Youtube')),
+         _buildUrlChaineYoutube(),
+         Separator(),
+         Container(
+           alignment: Alignment.topLeft,
+           child: FormSectionTitle('Uploader Diplome, curriculome vitae ou certificat')),
+          Container(
+            alignment: Alignment.topLeft,
+            width: MediaQuery.of(context).size.width / 3,
+            height: 40,
+            child: ButtonUploadDiplome(title: "upload", onPressed: (){},)),
+          Separator(),
         _buildSubmitButton()
+      ],
+    );
+  }
+
+    Widget _buildUrlChaineYoutube()=> TextInput(onValidate: null, helper: 'https://www.youtube.com', isRequired: false, onChange: null);
+
+    Widget _builProfil() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Stack(
+          overflow: Overflow.visible,
+          children: <Widget>[
+            Container(
+              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width * .3,
+              height: 135,
+              child: Icon(Icons.person, size: 50,),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Styles.grayColor),
+                  borderRadius: BorderRadius.circular(4),
+                  //  image: DecorationImage(image: AssetImage('images/plant_header_background.png'))
+                  ),
+            ),
+            Positioned(
+                top: -10,
+                right: -10,
+                child: Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Styles.grayColor,
+                  ),
+                  child: Center(child: Text('', style: Styles.imageBatch)),
+                )),
+          ],
+        ),
+        SizedBox(width: 36),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Votre\nPlus \nBeau Profil', style: Styles.productName),
+            ButtonUpload(title: "Upload", onPressed: (){})
+            
+          ],
+        )
       ],
     );
   }
@@ -317,74 +156,6 @@ class _PlantFormPaymentState extends State<PlantFormPayment> /*with FormMixin*/ 
   //   );
   // }
 
-  // Widget _buildShippingSection() {
-  //   return Column(children: <Widget>[
-  //     Row(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: <Widget>[
-  //         Container(constraints: BoxConstraints(minWidth: 85), child: Text('Contact', style: Styles.orderLabel)),
-  //         Text(values[FormKeys.email], overflow: TextOverflow.clip, style: Styles.orderPrice),
-  //       ],
-  //     ),
-  //     Padding(
-  //       padding: const EdgeInsets.symmetric(vertical: 12.0),
-  //       child: Row(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: <Widget>[
-  //           Container(constraints: BoxConstraints(minWidth: 85), child: Text('Ship to', style: Styles.orderLabel)),
-  //           Text(_getShippingAddress(), overflow: TextOverflow.clip, style: Styles.orderPrice),
-  //         ],
-  //       ),
-  //     ),
-  //     Row(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: <Widget>[
-  //         Container(constraints: BoxConstraints(minWidth: 85), child: Text('Method', style: Styles.orderLabel)),
-  //         Text('FREE', overflow: TextOverflow.clip, style: Styles.orderPrice),
-  //       ],
-  //     )
-  //   ]);
-  // }
-
-  // String _getShippingAddress() {
-  //   String aptNumber = values[FormKeys.apt].isNotEmpty ? '#${values[FormKeys.apt]} ' : '';
-  //   String address = values[FormKeys.address];
-  //   String country = values[FormKeys.country];
-  //   String city = values[FormKeys.city];
-  //   String countrySubdivision = values[CountryData.getSubdivisionTitle(country)] ?? '';
-  //   String postalCode = values[FormKeys.postal];
-  //   return '$aptNumber$address\n$city, $countrySubdivision ${postalCode.toUpperCase()}\n${country.toUpperCase()}';
-  // }
-
-  // Widget _buildInputWithButton() {
-  //   return Row(
-  //     children: <Widget>[
-  //       Expanded(
-  //           flex: 4,
-  //           child: TextInput(
-  //             helper: '000 000 000 XX',
-  //             type: InputType.number,
-  //             onValidate: (){},
-  //             isRequired: false,
-  //             isActive: false,
-  //           )),
-  //       Expanded(
-  //         flex: 2,
-  //         child: Padding(
-  //           padding: const EdgeInsets.only(bottom: 26.0, left: 12),
-  //           child: MaterialButton(
-  //             disabledColor: Styles.lightGrayColor,
-  //             elevation: 0,
-  //             color: Styles.secondaryColor,
-  //             height: 56,
-  //             child: Text('Apply', style: Styles.submitButtonText),
-  //             onPressed: null,
-  //           ),
-  //         ),
-  //       )
-  //     ],
-  //   );
-  // }
 
   Widget _buildSubmitButton() {
     return SubmitButton(

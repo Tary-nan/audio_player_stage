@@ -1,10 +1,6 @@
-import 'package:audio_player_stage/audio_intenet_screen.dart';
 import 'package:audio_player_stage/demo.dart';
 import 'package:flutter/material.dart';
-import 'package:chewie_audio/chewie_audio.dart';
-import 'package:chewie_audio/src/chewie_player.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:video_player/video_player.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,164 +14,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: PlantFormsDemo(),
-    );
-  }
-}
-
-
-class ChewieAudioDemo extends StatefulWidget {
-  ChewieAudioDemo({this.title = 'Chewie Audio Demo'});
-
-  final String title;
-
-  @override
-  State<StatefulWidget> createState() {
-    return _ChewieDemoState();
-  }
-}
-
-class _ChewieDemoState extends State<ChewieAudioDemo> {
-  TargetPlatform _platform;
-  
-  VideoPlayerController _videoPlayerController1;
-  ChewieAudioController _chewieAudioController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _videoPlayerController1 = VideoPlayerController.network(
-        'https://www.w3schools.com/tags/horse.mp3');
-
-    _chewieAudioController = ChewieAudioController(
-      videoPlayerController: _videoPlayerController1,
-      autoPlay: false,
-      looping: false,
-      // Try playing around with some of these other options:
-
-      showControls: false,
-      materialProgressColors: ChewieProgressColors(
-        playedColor: Colors.red,
-        handleColor: Colors.blue,
-        backgroundColor: Colors.grey,
-        bufferedColor: Colors.lightGreen,
-      ),
-      autoInitialize: true,
-    );
-  }
-
-  @override
-  void dispose() {
-    _videoPlayerController1.dispose();
-    _chewieAudioController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: widget.title,
-      theme: ThemeData.light().copyWith(
-        platform: _platform ?? Theme.of(context).platform,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Column(
-          children: <Widget>[
-            Center(
-              child: ChewieAudio(
-                controller: _chewieAudioController,
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        _chewieAudioController.dispose();
-                        _chewieAudioController = ChewieAudioController(
-                          videoPlayerController: _videoPlayerController1,
-                          autoPlay: true,
-                          looping: true,
-                        );
-                      });
-                    },
-                    child: Padding(
-                      child: Text("Video 1"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        _chewieAudioController.dispose();
-                        _videoPlayerController1.pause();
-                        _videoPlayerController1.seekTo(Duration(seconds: 0));;
-                      });
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Error Video"),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                       if(!mounted) return ;
-                      setState(() {
-                        _platform = TargetPlatform.android;
-                      });
-                    },
-                    child: Padding(
-                      child: Text("Android controls"),
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        _platform = TargetPlatform.iOS;
-                      });
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("iOS controls"),
-                    ),
-                  ),
-                )
-              ],
-            )
-          ],
-        ),
-      ),
     );
   }
 }

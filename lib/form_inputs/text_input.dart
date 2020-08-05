@@ -13,7 +13,6 @@ class TextInput extends StatefulWidget {
   final Function onValidate;
   final Function onChange;
   final bool isActive;
-  final ValueNotifier valueNotifier;
 
   const TextInput({
     Key key,
@@ -25,7 +24,6 @@ class TextInput extends StatefulWidget {
     this.label = '',
     this.isActive = true,
     this.onChange,
-    this.valueNotifier,
   }) : super(key: key);
 
   @override
@@ -44,10 +42,6 @@ class _TextInputState extends State<TextInput> {
   @override
   initState() {
     super.initState();
-    // Reset the valid state on notifier change
-    if (widget.valueNotifier != null) {
-      widget.valueNotifier.addListener(()=>_isValid = false);
-    }
   }
 
   @override
@@ -64,7 +58,6 @@ class _TextInputState extends State<TextInput> {
 
   @override
   Widget build(BuildContext context) {
-    //Validate based on initial value, only do this once. We do it here instead of initState as it may trigger rebuilds up the tree
     if (_isValid == null) {
       if (widget.initialValue.isNotEmpty) {
         _validateField(widget.initialValue);
@@ -156,7 +149,6 @@ class _TextInputState extends State<TextInput> {
     if (widget.isRequired && value.isEmpty) {
       isValid = false;
       _errorText = 'Required';
-      // Update error label, wait a frame because this was causing markAsBuild errors
       Future.delayed(Duration(milliseconds: 17), () => setState(() {}));
       return _errorText;
     }
