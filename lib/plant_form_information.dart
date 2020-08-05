@@ -1,4 +1,5 @@
 import 'package:audio_player_stage/demo.dart';
+import 'package:audio_player_stage/form_inputs/checkbox_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +36,8 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
   String radioItem1 = '';
   String radioItem2 = '';
 
+  bool isOffert = true;
+
     List<String> categories = [
     '1 H',
     '45 M',
@@ -70,17 +73,9 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
       formKey: _formKey,
       isHidden: widget.isHidden,
       pageSizeProportion: widget.pageSize ?? 0.85,
-      title: 'annonce etape 2'.toUpperCase(),
+      title: 'annonce etape 2',
       children: <Widget>[
-            Text(
-              "Quel type de cours souhaitez-vous donner?",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 20,
-                  fontFamily: 'BAARS',
-                  fontWeight: FontWeight.w600),
-            ),
+        FormSectionTitle("Quel type de cours souhaitez-vous donner?"),
             SizedBox(height: 15),
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -153,21 +148,12 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
               ],
             ),
 
-            Column(
-              children:
-             [
-              Container(
-              alignment: Alignment.centerLeft,
-              child: Text(
-              "Ou se deroule les cours",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 20,
-                  fontFamily: 'BAARS',
-                  fontWeight: FontWeight.w600),
-            ),),
+            SizedBox(height: 20),
 
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+            FormSectionTitle("Ou se deroule les cours"),
             Container(
               padding: EdgeInsets.only(top:10),
               color: Colors.white.withOpacity(.5),
@@ -230,19 +216,13 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
               ),
             ),
             ],),//
-          Container(
-            alignment: Alignment.topLeft,
-              padding: const EdgeInsets.only(top:8.0),
-              child: Text(
-                "Votre tarrif et votre numéro ?",
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 20,
-                    fontFamily: 'BAARS',
-                    fontWeight: FontWeight.w700),
-              ),
-            ),
-            
+
+
+            SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children :[
+            FormSectionTitle("Votre tarrif et votre numéro ?"),
             Row(
               children: <Widget>[
                 Container(
@@ -283,76 +263,71 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
                 )
               ],
             ),
+
+              ]
+            ),
+
             SizedBox(
               height: 20,
             ),
-            Text(
-              "Offrir Son premier Cour ",
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 25,
-                  fontFamily: 'BAARS',
-                  fontWeight: FontWeight.w700),
-            ),
-            Container(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  "Offrir son premier cour histoir de donné confiance ,bien possé les bases du cour avec votre éleve ",
-                  style: TextStyle(color: Colors.grey, fontSize: 13),
-                )),
-            Container(
-              decoration: BoxDecoration(
 
-                color: Colors.grey[90],
-                borderRadius: BorderRadius.circular(5),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+            FormSectionTitle("Offrir Son premier Cour "),
+
+            // Container(
+            //     padding: EdgeInsets.all(20),
+            //     child: Text(
+            //       "Offrir son premier cour histoir de donné confiance ,bien possé les bases du cour avec votre éleve ",
+            //       style: TextStyle(color: Colors.grey, fontSize: 13),
+            //     )),
+            Container(
+              alignment: Alignment.topLeft,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
+                border: Border.all(color: Color(0xffd4d4d4)),
+                borderRadius: BorderRadius.all(Radius.circular(7),)
               ),
-              child: RadioListTile(
-                activeColor: Styles.accanceColor,
-                title: Text(
-                  "Oui je souhaite offrir ma premierre sceance de cour",
-                  style: TextStyle(
-                      color: Colors.black45,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-                value: "je peux encadrer l'élève à mon domicile",
-                groupValue: radioItem,
-                onChanged: (val) {
-                  setState(() {
-                    radioItem = val;
-                  });
-                },
-              ),
+              child: CheckboxListTile(    
+                      title: const Text("Oui je souhaite offrir ma premierre sceance de cour"),
+                      value: isOffert,
+                      onChanged: (bool value) {
+                        setState(() {
+                          isOffert = value;
+                        });
+                      },),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
+            SizedBox(height:10),
+            Container(
+              // padding: const EdgeInsets.all(12.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Flexible(
                     child: Container(
                       alignment: Alignment.center,
                       height: MediaQuery.of(context).size.height / 12,
                       decoration: BoxDecoration(
-                          color: Styles.accanceColor,
+                          // color: Styles.accanceColor,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             bottomLeft: Radius.circular(10),
                           )),
-                      child: Center(
-                          child: Text(
-                              "J'offre mon promier cour pour une durée de ",style:TextStyle(color: Colors.white),),),
+                      child: Text(
+                          "premier cour offert pour ",style:TextStyle(color: Styles.secondaryColor),),
                     ),
                   ),
                   Flexible(
                     child: Container(
                       width: MediaQuery.of(context).size.width / 4,
                       decoration: BoxDecoration(
-                          color: Colors.grey.withOpacity(.1),
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          )),
+                          color: Colors.white,
+                          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
+                          border: Border.all(color: Color(0xffd4d4d4)),
+                          borderRadius: BorderRadius.all(Radius.circular(7),)
+                        ),
                       child: Center(
                         child: DropdownButton<String>(
                           value: _chosenValue,
@@ -384,7 +359,12 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
                   )
                 ],
               ),
-            ), 
+            ),
+
+              ]
+            ),
+
+ 
 
         SubmitButton(
             // isErrorVisible: isFormErrorVisible,

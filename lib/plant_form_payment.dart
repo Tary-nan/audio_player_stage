@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:audio_player_stage/demo.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 import 'demo_data.dart';
@@ -34,6 +37,25 @@ class _PlantFormPaymentState extends State<PlantFormPayment> /*with FormMixin*/ 
     super.initState();
   }
 
+  File _image;
+  bool _loadImage = false;
+  // final picker = ImagePicker();
+  Future getImageFromFils() async {
+    try {
+      setState(() {
+        _loadImage = true;
+      });
+      // final pickedFile = await picker.getImage(source: ImageSource.gallery);
+      // _image = File(pickedFile.path);
+      print("Image From Galerie ${_image}");
+      setState(() {
+        _loadImage = false;
+      });
+    } catch (error) {
+      print("Error to get Image from fils ${error.toString()}");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     print("Rebuilding payments @ ${DateTime.now().millisecondsSinceEpoch}");
@@ -42,51 +64,240 @@ class _PlantFormPaymentState extends State<PlantFormPayment> /*with FormMixin*/ 
       pageSizeProportion: widget.pageSize ?? 0.85,
       title: 'Payment',
       children: [
-      //   // Text('\$34.00', style: Styles.orderTotal),
-      //   // Separator(),
-      //   // _buildShippingSection(),
-      //   // Separator(),
-      //   // FormSectionTitle('Gift card or discount code'),
-      //   _buildInputWithButton(),
-      //   FormSectionTitle('Payment', padding: EdgeInsets.only(bottom: 16)),
-      //   CreditCardInfoInput(
-      //     key: ValueKey(FormKeys.ccNumber),
-      //     label: 'Card Number',
-      //     helper: '4111 2222 3333 4440',
-      //     cardNetwork: _cardNetwork,
-      //     onValidate: onItemValidate,
-      //     onChange: _handleItemChange,
-      //     inputType: CreditCardInputType.number,
-      //   ),
-      //   TextInput(
-      //       key: ValueKey(FormKeys.ccName), label: 'Card Name', helper: 'Cardholder Name', onValidate: onItemValidate),
-      //   Row(
-      //     children: <Widget>[
-      //       Expanded(
-      //           child: CreditCardInfoInput(
-      //         key: ValueKey(FormKeys.ccExpDate),
-      //         label: 'Expiration',
-      //         helper: 'MM/YY',
-      //         onValidate: onItemValidate,
-      //         inputType: CreditCardInputType.expirationDate,
-      //       )),
-      //       SizedBox(width: 24),
-      //       Expanded(
-      //         child: CreditCardInfoInput(
-      //             key: ValueKey(FormKeys.ccCode),
-      //             cardNetwork: _cardNetwork,
-      //             label: 'Security Code',
-      //             helper: '000',
-      //             onValidate: onItemValidate,
-      //             inputType: CreditCardInputType.securityCode),
-      //       ),
-      //     ],
-      //   ),
-      //   FormSectionTitle('Shipping Notifications'),
-      //   CheckBoxInput(label: 'Send shipping updates via email'),
+
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+
+            Column(
+          children: <Widget>[
+            SizedBox(
+              height: 40,
+            ),
+            /*Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: FAProgressBar(
+                              progressColor: accanceColor,
+                              currentValue: 100,
+                              displayText: '%',
+                              animatedDuration: Duration(seconds: 1),
+                              maxValue: 100,
+                            ),
+                          ),*/
+            /*Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: new LinearPercentIndicator(
+                              width: MediaQuery.of(context).size.width/1.1,
+                              animation: true,
+                              lineHeight: 20.0,
+                              animationDuration: 2000,
+                              percent: 1.0,
+                              center: Text("100.0%", style: TextStyle(
+                                color: Colors.white
+                              ),),
+                              linearStrokeCap: LinearStrokeCap.roundAll,
+                              progressColor: accanceColor,
+                            ),
+                          ),*/
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Felicitations votre annonce est complète !!!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 25,
+                    fontFamily: 'BAARS',
+                    fontWeight: FontWeight.w700),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Container(
+                padding: EdgeInsets.all(12),
+                child: Text(
+                  "Dernière petite chose : enrichissez la avec des recommandations d'amis, de collègues ou d'anciens élèves..."
+                  "Plus vous en avez, plus elle sera appreciée et mieux elle sera positionnée .",
+                  style: TextStyle(color: Colors.black54, fontSize: 18),
+                )),
+            SizedBox(
+              height: 16,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height / 1,
+              width: MediaQuery.of(context).size.width / 1.1,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                      color: Colors.grey.withOpacity(0.2), width: 1)),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                        color: Styles.accanceColor,
+                        shape: BoxShape.circle,)
+                        // image: DecorationImage(
+                        //     image: AssetImage('assets/images/books.jpg'),
+                        //     fit: BoxFit.cover)),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'DAGOUAGA',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height / 18,
+                    width: MediaQuery.of(context).size.width / 4,
+                    decoration: BoxDecoration(
+                        color: Styles.accanceColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                        child: Text(
+                      '100frs/h',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Center(
+                        child: Text(
+                      'Simplissime, demandez des recommandations à vos amis via :',
+                      style: TextStyle(
+                          fontFamily: 'BAARS',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.black54),
+                    )),
+                  ),
+                  // SocialBtn("SMS", Icons.message, Colors.green),
+                  // SocialBtn("Mail", Icons.mail, Colors.pink),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.only(left: 10),
+                      height: 50,
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(59, 89, 152, 1),
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'f',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 18),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            'Facebook',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'BAARS',
+                                fontWeight: FontWeight.w700),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  // SocialBtn("Messenger", Icons.message,
+                  //     Color.fromRGBO(93, 153, 251, 1)),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.only(left: 10),
+                      height: 50,
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      decoration: BoxDecoration(
+                          color: Styles.accanceColor,
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            height: 18,
+                            width: 18,
+                            color: Colors.white,
+                            child: Center(
+                                child: Text(
+                              'in',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Styles.accanceColor,
+                                  fontSize: 15),
+                            )),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Linkedin',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontFamily: 'BAARS',
+                                fontWeight: FontWeight.w700),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+          ],
+        ),
+            
+             ],
+        ),
+     
+        // TextInput(
+        //     key: ValueKey(FormKeys.ccName), label: 'Card Name', helper: 'Cardholder Name', onValidate: onItemValidate, onChange: (String key, String value){
+        //           print(key);
+        //          print(value);
+
+
+        //     },),
+      
         _buildSubmitButton()
       ],
     );
+  }
+
+  onItemValidate(String key, bool isValid, {String value}){
+    print("////////////////////////");
+    print(key);
+    print(isValid);
+    print(value);
+
   }
 
   // @override

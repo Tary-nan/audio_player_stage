@@ -22,10 +22,11 @@ class Header extends StatelessWidget {
             //   end: Alignment.bottomRight
 
             // )
-              // image: DecorationImage(
-              //     // image: AssetImage('images/plant_header_background.png'),
-              //     fit: BoxFit.cover,
-              //     colorFilter: ColorFilter.mode(Colors.white60, BlendMode.screen))
+              image: DecorationImage(
+                  image: AssetImage('assets/images/cho.png'),
+                  // image: AssetImage('assets/ecole.jpg'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(Colors.white60, BlendMode.screen))
                   ),
           child: SafeArea(
             child: Padding(

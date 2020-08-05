@@ -42,7 +42,7 @@ class _PlantFormSummaryState extends State<PlantFormSummary> {
     return FormPage(
       pageSizeProportion: widget.pageSize ?? 0.85,
       isHidden: widget.isHidden,
-      title: "annonce etape 1".toUpperCase() ,
+      title: "annonce etape 1",
       children: <Widget>[
         Text(
           "Veuillez clicker sur vos compétences (5maximums)...",
