@@ -37,6 +37,9 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
   String radioItem2 = '';
 
   bool isOffert = true;
+  bool isDomicile = false;
+  bool isStudent = true;
+  bool isWebcam = false;
 
     List<String> categories = [
     '1 H',
@@ -169,10 +172,10 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
                     ),
                     child: CheckboxListTile(    
                       title: const Text("je peux encadrer l'élève à mon domicile"),
-                      value: timeDilation != .1,
+                      value: isDomicile,
                       onChanged: (bool value) {
                         setState(() {
-                          timeDilation = value ? 1.0 : .1;
+                          isDomicile = value;
                         });
                       },),
                   ),
@@ -187,31 +190,31 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
                     ),
                     child: CheckboxListTile(    
                       title: const Text("je peux me déplacer chez l'élève"),
-                      value: timeDilation != .2,
+                      value: isStudent,
                       onChanged: (bool value) {
                         setState(() {
-                          timeDilation = value ? 2.0 : .2;
+                          isStudent = value;
                         });
                       },),
                   ),
-                  // SizedBox(height:10),
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //     color: Colors.white,
-                  //     boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
-                  //     border: Border.all(color: Color(0xffd4d4d4)),
-                  //     borderRadius: BorderRadius.all(Radius.circular(7),
-                  //     ),
-                  //   ),
-                  //   child: CheckboxListTile(    
-                  //     title: const Text("je peux donner des cours par webcam"),
-                  //     value: timeDilation != .3,
-                  //     onChanged: (bool value) {
-                  //       setState(() {
-                  //         timeDilation = value ? 3.0 : .3;
-                  //       });
-                  //     },),
-                  // ),
+                  SizedBox(height:10),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
+                      border: Border.all(color: Color(0xffd4d4d4)),
+                      borderRadius: BorderRadius.all(Radius.circular(7),
+                      ),
+                    ),
+                    child: CheckboxListTile(    
+                      title: const Text("je peux donner des cours par webcam"),
+                      value: timeDilation != .3,
+                      onChanged: (bool value) {
+                        setState(() {
+                          timeDilation = value ? 3.0 : .3;
+                        });
+                      },),
+                  ),
                 ],
               ),
             ),
@@ -225,22 +228,23 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
             FormSectionTitle("Votre tarrif et votre numéro ?"),
             Row(
               children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: 20),
-                  height: MediaQuery.of(context).size.height / 12,
-                  width: MediaQuery.of(context).size.width / 1.8,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.1),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(7),
-                        bottomLeft: Radius.circular(7),
-                      )),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    cursorColor: Colors.grey,
-                    decoration: InputDecoration(
-                        hintText: '2500', border: InputBorder.none),
+                Flexible(
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.only(left: 20),
+                    height: MediaQuery.of(context).size.height / 12,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.1),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(7),
+                          bottomLeft: Radius.circular(7),
+                        )),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      cursorColor: Colors.grey,
+                      decoration: InputDecoration(
+                          hintText: '2500', border: InputBorder.none),
+                    ),
                   ),
                 ),
                 Container(

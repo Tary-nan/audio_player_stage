@@ -1,4 +1,6 @@
+import 'package:audio_player_stage/components/section_title.dart';
 import 'package:audio_player_stage/demo_data.dart';
+import 'package:audio_player_stage/form_inputs/text_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -44,16 +46,8 @@ class _PlantFormSummaryState extends State<PlantFormSummary> {
       isHidden: widget.isHidden,
       title: "annonce etape 1",
       children: <Widget>[
-        Text(
-          "Veuillez clicker sur vos compétences (5maximums)...",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.black54,
-              fontSize: 18,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w700),
-        ),
-        SizedBox(height: 30),
+        TextInput(onValidate: null, label: "Specialité", helper: "Rechercher votre Specialité", ),
+        FormSectionTitle("Veuillez clicker sur vos compétences (5maximums)..."),
         MultiSelectedChip(
           competences,
           myReturnList: (myList) {
@@ -63,74 +57,13 @@ class _PlantFormSummaryState extends State<PlantFormSummary> {
           },
         ),
         SizedBox(height: 20),
-        Text(
-              'Trouvons un beau titre pour votre annonce',
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 20,
-                  fontFamily: 'BAARS',
-                  fontWeight: FontWeight.w700),
+        FormSectionTitle("Trouvons un beau titre pour votre annonce"),
+            TextFormField(
+              maxLines: 6,
+              minLines: 4,
+              style: Styles.inputLabel,
+              decoration:Styles.getInputDecoration(helper: "Ex: Ingénieur informatique donne des cours..."),
             ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-                padding: EdgeInsets.only(left: 12),
-                //smargin: EdgeInsets.only(left: 15),
-                height: 100,
-                width: MediaQuery.of(context).size.width / 1.05,
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.3),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: Colors.grey, width: 1),
-                ),
-                child: TextField(
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    hintText: 'Ex: Ingénieur informatique donne des cours...',
-                    hintStyle: TextStyle(color: Colors.black54, fontSize: 18),
-                    border: InputBorder.none,
-                  ),
-                )),
-            SizedBox(
-              height: 35,
-            ),
-            Container(
-              height: 150,
-              width: MediaQuery.of(context).size.width / 1.2,
-              decoration: Styles.formContainerDecoration,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Attention:',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontFamily: 'BAARS',
-                        fontWeight: FontWeight.w600),
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Votre titre est la clef de voûte de votre annonce. Bichonnez-le, il doit être accrocheur et contenir au moins 12 mots, comme'
-                        'L’intitulé des matières que vous enseignez,  Vos spécificités (diplôme, méthode, etc.)',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontFamily: 'BAARS',
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-
         SubmitButton(
           padding: EdgeInsets.symmetric(horizontal: Styles.hzPadding),
           child: Text('Next', style: Styles.submitButtonText),

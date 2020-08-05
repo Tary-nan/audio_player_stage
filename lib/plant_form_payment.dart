@@ -62,7 +62,7 @@ class _PlantFormPaymentState extends State<PlantFormPayment> /*with FormMixin*/ 
     return FormPage(
       formKey: _formKey,
       pageSizeProportion: widget.pageSize ?? 0.85,
-      title: 'Payment',
+      title: 'Soumettre',
       children: [
 
         Column(
