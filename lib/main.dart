@@ -1,4 +1,4 @@
-import 'package:audio_player_stage/demo.dart';
+import 'package:audio_player_stage/main_annonce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: PlantFormsDemo(),
+      home: MainAnnonce(),
     );
   }
 }

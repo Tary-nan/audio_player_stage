@@ -1,29 +1,27 @@
 import 'package:audio_player_stage/components/section_separator.dart';
 import 'package:audio_player_stage/components/section_title.dart';
-import 'package:audio_player_stage/demo_data.dart';
+import 'package:audio_player_stage/components/stack_pages_route.dart';
+import 'package:audio_player_stage/components/submit_button.dart';
 import 'package:audio_player_stage/form_inputs/multi_selected_chip.dart';
 import 'package:audio_player_stage/form_inputs/text_input.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'components/stack_pages_route.dart';
-import 'components/submit_button.dart';
-import 'demo.dart';
-import 'form_page.dart';
-import 'plant_form_information.dart';
-import 'styles.dart';
+import '../styles.dart';
+import 'form_screen.dart';
+import 'from_section_secondary.dart';
 
-class PlantFormSummary extends StatefulWidget {
+class FirstStepAnnonce extends StatefulWidget {
+
    double pageSize;
    bool isHidden;
 
-   PlantFormSummary({Key key, this.pageSize, this.isHidden = false}) : super(key: key);
+   FirstStepAnnonce({Key key, this.pageSize, this.isHidden = false}) : super(key: key);
 
   @override
-  _PlantFormSummaryState createState() => _PlantFormSummaryState();
+  _FirstStepAnnonce createState() => _FirstStepAnnonce();
 }
 
-class _PlantFormSummaryState extends State<PlantFormSummary> {
+class _FirstStepAnnonce extends State<FirstStepAnnonce> {
     List<String> returnList;
 
     List<String> competences = [
@@ -77,8 +75,8 @@ class _PlantFormSummaryState extends State<PlantFormSummary> {
     Navigator.push(
       context,
       StackPagesRoute(
-        previousPages: [PlantFormSummary(pageSize: .85, isHidden: true)],
-        enterPage: PlantFormInformation(),
+        previousPages: [FirstStepAnnonce(pageSize: .85, isHidden: true)],
+        enterPage: SecondStepAnnonce(),
       ),
     );
   }

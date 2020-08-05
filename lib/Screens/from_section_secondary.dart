@@ -1,32 +1,32 @@
 import 'package:audio_player_stage/components/section_separator.dart';
-import 'package:audio_player_stage/demo.dart';
+import 'package:audio_player_stage/components/section_title.dart';
+import 'package:audio_player_stage/components/stack_pages_route.dart';
+import 'package:audio_player_stage/components/submit_button.dart';
+import 'package:audio_player_stage/main_annonce.dart';
+import 'package:audio_player_stage/form_inputs/text_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter/scheduler.dart' show timeDilation;
 
-import 'components/section_title.dart';
-import 'components/stack_pages_route.dart';
-import 'components/submit_button.dart';
-import 'demo_data.dart';
-import 'form_inputs/text_input.dart';
-import 'form_mixin.dart';
-import 'form_page.dart';
-import 'plant_form_payment.dart';
-import 'plant_form_summary.dart';
-import 'styles.dart';
+import '../models/demo_data.dart';
+import '../models/form_mixin.dart';
+import 'form_screen.dart';
+import '../styles.dart';
+import 'from_section_primary.dart';
+import 'from_section_third.dart';//SecondStepAnnonce
 
-class PlantFormInformation extends StatefulWidget {
+class SecondStepAnnonce extends StatefulWidget {
   final double pageSize;
   final bool isHidden;
 
-  const PlantFormInformation({Key key, this.pageSize, this.isHidden = false}) : super(key: key);
+  const SecondStepAnnonce({Key key, this.pageSize, this.isHidden = false}) : super(key: key);
 
   @override
-  _PlantFormInformationState createState() => _PlantFormInformationState();
+  _SecondStepAnnonceState createState() => _SecondStepAnnonceState();
 }
 
-class _PlantFormInformationState extends State<PlantFormInformation> with FormMixin {
+class _SecondStepAnnonceState extends State<SecondStepAnnonce> with FormMixin {
   final _formKey = GlobalKey<FormState>();
   bool isSelected = false;
   bool singleCourMode = false;
@@ -392,16 +392,15 @@ class _PlantFormInformationState extends State<PlantFormInformation> with FormMi
     return values.containsKey(name) ? values[name] : "";
   }
 
-
   void _handleSubmit(BuildContext context) {
     // if (_formKey.currentState.validate() && formCompletion == 1) {
       if(true){
       Navigator.push(
           context,
           StackPagesRoute(previousPages: [
-            PlantFormSummary(isHidden: true, pageSize: .85),
-            PlantFormInformation(isHidden: true, pageSize: .85),
-          ], enterPage: PlantFormPayment()));
+            FirstStepAnnonce(isHidden: true, pageSize: .85),
+            SecondStepAnnonce(isHidden: true, pageSize: .85),
+          ], enterPage: SecondStepAnnonce()));
     } else
       setState(() {
         isFormErrorVisible = true;

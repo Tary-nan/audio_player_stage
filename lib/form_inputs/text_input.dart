@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../demo_data.dart';
+import '../models/demo_data.dart';
 import 'input_validator.dart';
 import '../styles.dart';
 

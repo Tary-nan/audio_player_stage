@@ -3,21 +3,21 @@ import 'package:audio_player_stage/components/button_upload_diplome.dart';
 import 'package:audio_player_stage/components/button_upload_photo.dart';
 import 'package:audio_player_stage/components/section_separator.dart';
 import 'package:audio_player_stage/components/section_title.dart';
+import 'package:audio_player_stage/components/submit_button.dart';
 import 'package:audio_player_stage/form_inputs/text_input.dart';
 import 'package:flutter/material.dart';
-import 'form_page.dart';
-import 'styles.dart';
-import 'components/submit_button.dart';
 
-class PlantFormPayment extends StatefulWidget {
+import 'form_screen.dart';
+import '../styles.dart';
+class ThirdStepAnnonce extends StatefulWidget {
   final double pageSize;
 
-  const PlantFormPayment({Key key, this.pageSize}) : super(key: key);
+  const ThirdStepAnnonce({Key key, this.pageSize}) : super(key: key);
   @override
-  _PlantFormPaymentState createState() => _PlantFormPaymentState();
+  _ThirdStepAnnonceState createState() => _ThirdStepAnnonceState();
 }
 
-class _PlantFormPaymentState extends State<PlantFormPayment> /*with FormMixin*/ {
+class _ThirdStepAnnonceState extends State<ThirdStepAnnonce> /*with FormMixin*/ {
   final _formKey = GlobalKey<FormState>();
 
   @override

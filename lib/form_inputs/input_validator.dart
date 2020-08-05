@@ -1,6 +1,6 @@
 
 
-import 'package:audio_player_stage/demo_data.dart';
+import 'package:audio_player_stage/models/demo_data.dart';
 
 class InputValidator {
   const InputValidator();
